@@ -8,4 +8,10 @@ RSpec.describe "The internet", type: :feature do
     expect(page).to have_css(".icon-signout")
   end
 
+  it "should detect dynamic content" do
+    visit("http://the-internet.herokuapp.com/dynamic_loading/2")
+    find("#start > button").click
+    expect(page).to have_css("#finish")
+  end
+
 end

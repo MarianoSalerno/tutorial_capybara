@@ -7,6 +7,7 @@ Capybara.register_driver :selenium do |app|
   caps = {"chromeOptions" => {
     "args": [ "start-maximized"]
   }}
+  SARASA
   Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: caps)
 end
 

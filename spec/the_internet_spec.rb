@@ -1,6 +1,6 @@
 RSpec.describe "The internet", type: :feature do
 
-  it "should login to the secure area", type: :feature do
+  it "should login to the secure area", type: :feature, sarasa: true do
     visit("http://the-internet.herokuapp.com/login")
     fill_in("username", with: "tomsmith")
     fill_in("password", with: "SuperSecretPassword!")

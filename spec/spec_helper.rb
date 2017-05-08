@@ -2,13 +2,14 @@ require 'capybara/rspec'
 require 'selenium-webdriver'
 require 'pry'
 
+Selenium::WebDriver.logger.level = :debug
+Selenium::WebDriver.logger.output = 'selenium.log'
+
 #Latests versions of firefox don't work with selenium 2.54
 Capybara.register_driver :selenium do |app|
-  caps = {"chromeOptions" => {
-    "args": [ "start-maximized"]
-  }}
-  SARASA
-  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: caps)
+  args = [ "--start-maximized", "--enable-logging", "--v=1", "--no-sandbox", "--headless", "--remote-debugging-port=9222"]
+  Selenium::WebDriver::Chrome.path = "/usr/bin/google-chrome-beta"
+  Capybara::Selenium::Driver.new(app, browser: :chrome, "args": args, driver_opts: {log_path: "chromedriver.log", verbose: true})
 end
 
 Capybara.default_driver = :selenium
